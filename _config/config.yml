@@ -1,0 +1,10 @@
+---
+Name: goldfinch-requester
+After:
+  - '#rootroutes'
+  - '#coreroutes'
+---
+
+SilverStripe\Control\Director:
+  rules:
+    'api': Goldfinch\Requester\Controllers\RequesterController
