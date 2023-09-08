@@ -5,13 +5,14 @@ namespace Goldfinch\Requester\Controllers;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Security\SecurityToken;
+use Goldfinch\Requester\Requester;
 
 class RequesterController extends Controller
 {
     // private static $url_segment = 'api';
 
     private static $url_handlers = [
-        'POST tunnel' => 'tunnel',
+        'POST $@' => 'tunnel',
     ];
 
     private static $allowed_actions = [
@@ -27,21 +28,17 @@ class RequesterController extends Controller
     {
         $this->authorized($request);
 
-        // $data = $request->postVars();
-        // $rules = ss_config('Goldfinch\API\Router', 'rules');
+        $data = $request->postVars();
+        $params = implode('/', $request->latestParams());
 
-        // if (isset($rules[$paramUrl]))
-        // {
-        //     $class;
+        $rules = ss_config(Requester::class, 'rules');
 
-        //     return $class;
-        // }
-        // else
-        // {
-        //     return $this->httpError(403);
-        // }
+        if (isset($rules[$params]))
+        {
+            return $rules[$params]::init($request);
+        }
 
-        return json_encode(true);
+        return $this->httpError(403);
     }
 
     protected function authorized(HTTPRequest $request)
