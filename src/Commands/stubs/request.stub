@@ -1,6 +1,5 @@
 <?php
 {{ namespace }}
-namespace App\Requests;
 
 use Goldfinch\Requester\Requester;
 use Goldfinch\Illuminate\Validator;
