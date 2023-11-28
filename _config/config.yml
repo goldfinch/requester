@@ -7,4 +7,4 @@ After:
 
 SilverStripe\Control\Director:
   rules:
-    'api': Goldfinch\Requester\Controllers\RequesterController
+    'api/req': Goldfinch\Requester\Controllers\RequesterController
