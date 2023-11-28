@@ -1,0 +1,39 @@
+<?php
+{{ namespace }}
+namespace App\Requests;
+
+use Goldfinch\Requester\Requester;
+use Goldfinch\Illuminate\Validator;
+
+class {{ class }}Request extends Requester
+{
+    public static function handle()
+    {
+        $data = self::getData();
+
+        // .. SendGrid::send()
+
+        return json_encode([
+            'status' => true,
+            'message' => self::message($data),
+        ]);
+    }
+
+    public static function validator()
+    {
+        $data = self::getData();
+
+        // ..
+
+        Validator::validate($data, [
+            'name' => 'required',
+        ]);
+
+        return true;
+    }
+
+    protected static function message($data)
+    {
+        return '<div>Thank you, <strong>'.$data['name'].'</strong></div>';
+    }
+}

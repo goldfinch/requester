@@ -1,0 +1,17 @@
+<?php
+{{ namespace }}
+
+use SilverStripe\Core\Environment;
+use SilverStripe\Control\Director;
+use Illuminate\Contracts\Validation\ValidationRule;
+use Closure;
+
+class {{ class }}Rule implements ValidationRule
+{
+    public function validate(string $attribute, mixed $value, Closure $fail): void
+    {
+        // ..
+
+        // $fail('The :attribute invalid.');
+    }
+}
