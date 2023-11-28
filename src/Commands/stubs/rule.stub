@@ -1,6 +1,5 @@
 <?php
 {{ namespace }}
-
 use SilverStripe\Core\Environment;
 use SilverStripe\Control\Director;
 use Illuminate\Contracts\Validation\ValidationRule;
