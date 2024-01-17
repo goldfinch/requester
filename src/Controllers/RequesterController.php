@@ -2,10 +2,10 @@
 
 namespace Goldfinch\Requester\Controllers;
 
+use Goldfinch\Requester\Requester;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Security\SecurityToken;
-use Goldfinch\Requester\Requester;
 
 class RequesterController extends Controller
 {
@@ -15,9 +15,7 @@ class RequesterController extends Controller
         'POST $@' => 'tunnel',
     ];
 
-    private static $allowed_actions = [
-        'tunnel',
-    ];
+    private static $allowed_actions = ['tunnel'];
 
     public function init()
     {
@@ -33,8 +31,7 @@ class RequesterController extends Controller
 
         $rules = ss_config(Requester::class, 'rules');
 
-        if (isset($rules[$params]))
-        {
+        if (isset($rules[$params])) {
             return $rules[$params]::init($request);
         }
 
@@ -43,12 +40,12 @@ class RequesterController extends Controller
 
     protected function authorized(HTTPRequest $request)
     {
-        if(!$request->isPOST())
-        {
+        if (!$request->isPOST()) {
             return $this->httpError(403, 'This action is unauthorized');
-        }
-        else if($request->getHeader('X-CSRF-TOKEN') != SecurityToken::getSecurityID())
-        {
+        } elseif (
+            $request->getHeader('X-CSRF-TOKEN') !=
+            SecurityToken::getSecurityID()
+        ) {
             return $this->httpError(401, 'Unauthorized');
         }
     }

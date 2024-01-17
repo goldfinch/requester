@@ -13,12 +13,9 @@ class Requester
     {
         static::$request = $request;
 
-        if (static::validator())
-        {
+        if (static::validator()) {
             return static::handle();
-        }
-        else
-        {
+        } else {
             return Controller::curr()->httpError(403);
         }
     }
@@ -37,18 +34,12 @@ class Requester
     {
         $data = static::$request->postVars();
 
-        foreach ($data as $key => $item)
-        {
-            if ($item === 'true')
-            {
+        foreach ($data as $key => $item) {
+            if ($item === 'true') {
                 $data[$key] = true;
-            }
-            else if ($item === 'false')
-            {
+            } elseif ($item === 'false') {
                 $data[$key] = false;
-            }
-            else if ($item === 'undefined')
-            {
+            } elseif ($item === 'undefined') {
                 $data[$key] = false;
             }
             // else if (is_numeric($item) && !($item[0] == '0' && strlen($item) > 1)) // +123 -3213 counts as numeric ... so disable for now (maybe need to remove this)

@@ -1,9 +1,9 @@
 <?php
 {{ namespace }}
+use Closure;
 use SilverStripe\Core\Environment;
 use SilverStripe\Control\Director;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Closure;
 
 class {{ class }}Rule implements ValidationRule
 {
