@@ -15,7 +15,7 @@ class Requester
 
         if (static::validator()) {
             return static::handle();
-        } else {
+        } else if (Controller::has_curr()) {
             return Controller::curr()->httpError(403);
         }
     }
@@ -58,7 +58,11 @@ class Requester
 
     protected function abort($data, $code = 422)
     {
-        return Controller::curr()->httpError($code, json_encode($data));
+        if (Controller::has_curr()) {
+            return Controller::curr()->httpError($code, json_encode($data));
+        } else {
+            exit;
+        }
     }
 
     protected static function message($data)
