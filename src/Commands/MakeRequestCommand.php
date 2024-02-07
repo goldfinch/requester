@@ -17,5 +17,5 @@ class MakeRequestCommand extends GeneratorCommand
 
     protected $stub = './stubs/request.stub';
 
-    protected $prefix = 'Request';
+    protected $suffix = 'Request';
 }
