@@ -41,6 +41,8 @@ class Requester
                 $data[$key] = false;
             } elseif ($item === 'undefined') {
                 $data[$key] = false;
+            } elseif ($item === 'null') {
+                $data[$key] = '';
             }
             // else if (is_numeric($item) && !($item[0] == '0' && strlen($item) > 1)) // +123 -3213 counts as numeric ... so disable for now (maybe need to remove this)
             // {
