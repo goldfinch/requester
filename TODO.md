@@ -5,5 +5,5 @@ Name: app-requester
 ---
 Goldfinch\Requester\Requester:
   rules:
-    'contact': 'App\Requests\ContactRequest'
+    contact: App\Requests\ContactRequest
 ```
